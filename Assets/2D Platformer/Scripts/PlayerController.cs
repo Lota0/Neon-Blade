@@ -19,11 +19,13 @@ namespace Platformer
 
         private Rigidbody2D rigidbody;
         private Animator animator;
+        public BoxCollider2D AttackRadius;
 
         void Start()
         {
             rigidbody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+
         }
 
         private void FixedUpdate()
@@ -33,26 +35,28 @@ namespace Platformer
 
         void Update()
         {
-            //if (Input.GetKeyDown("E"))
-            //{
-            //    animator.SetInteger("playerState", 2);
-            //}
-            if (Input.GetButton("Horizontal")) 
+            if (Input.GetKeyDown("e"))
+            {
+                animator.SetInteger("playerState", 2);
+
+
+            }
+            else if (Input.GetButton("Horizontal")) 
             {
                 moveInput = Input.GetAxis("Horizontal");
                 Vector3 direction = transform.right * moveInput;
                 transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, movingSpeed * Time.deltaTime);
-                animator.SetInteger("playerState", 1); // Turn on run animation
+                animator.SetInteger("playerState", 1); 
             }
             else
             {
-                if (isGrounded) animator.SetInteger("playerState", 0); // Turn on idle animation
+                if (isGrounded) animator.SetInteger("playerState", 0); 
             }
             if(Input.GetKeyDown(KeyCode.Space) && isGrounded )
             {
                 rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             }
-            if (!isGrounded)animator.SetInteger("playerState", 0); // Turn on jump animation
+            if (!isGrounded)animator.SetInteger("playerState", 0); 
 
             if(facingRight == false && moveInput > 0)
             {
@@ -63,10 +67,6 @@ namespace Platformer
                 Flip();
             }
 
-            while (Input.GetKeyDown("e"))
-            {
-                animator.SetInteger("playerState", 2);
-            }
         }
 
         private void Flip()
@@ -85,22 +85,28 @@ namespace Platformer
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.tag == "Enemy")
-            {
-                deathState = true; // Say to GameManager that player is dead
-            }
-            else
-            {
-                deathState = false;
-            }
+            //if (other.gameObject.tag == "Enemy" && Input.GetKey("e"))
+            //{
+            //    Destroy(other.gameObject);
+            //    //deathState = true; // Say to GameManager that player is dead
+            //}
+            //else
+            //{
+            //    deathState = false;
+            //}
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.tag == "Coin")
-            {
-                Destroy(other.gameObject);
-            }
+           //if (other.gameObject.tag == "Coin")
+           //{
+           //    Destroy(other.gameObject);
+           //}
+           //if (other.gameObject.tag == "Enemy" && Input.GetKeyDown("e"))
+           //{
+           //    Destroy(other.gameObject);
+           //    //deathState = true; // Say to GameManager that player is dead
+           //}
         }
     }
 }
