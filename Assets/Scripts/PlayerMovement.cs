@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public Rigidbody2D rb;
+    public Rigidbody2D rb;//tried making this script but it wasnt working so just used the "PlayerController.cs" script from unity asset store and change it to work with the game
     private float force = 40000f;
     public float MoveSpeed = 10f;
     private float yMovement;
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey("d"))
         {
-            rb.velocity = new Vector2(MoveSpeed, yMovement);
+            rb.velocity = new Vector2(MoveSpeed, yMovement); 
         }
         else if (Input.GetKey("a"))
         {
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
             
         }
-
+        //tried making this script but it wasnt working so just used the "PlayerController.cs" script from unity asset store and change it to work with the game
         
 
     }

@@ -6,7 +6,7 @@ namespace Platformer
 {
     public class PlayerController : MonoBehaviour
     {
-        public float movingSpeed;
+        public float movingSpeed;//change the variables to match the game
         public float jumpForce;
         private float moveInput;
 
@@ -50,7 +50,7 @@ namespace Platformer
             }
             else
             {
-                if (isGrounded) animator.SetInteger("playerState", 0); 
+                if (isGrounded) animator.SetInteger("playerState", 0);// changed the playerstate to 0
             }
             if(Input.GetKeyDown(KeyCode.Space) && isGrounded )
             {
